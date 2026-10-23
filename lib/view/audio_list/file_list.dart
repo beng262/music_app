@@ -27,6 +27,14 @@ class _AudioListState extends State<AudioList> {
   }
 
   @override
+  void didUpdateWidget(covariant AudioList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.path != widget.path) {
+      controller.getFiles(widget.path);
+    }
+  }
+
+  @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
