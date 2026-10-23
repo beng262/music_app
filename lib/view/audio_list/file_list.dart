@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '/../view/audio_list/widget/app_bar.dart';
-import '/../view//audio_list/widget/bottom_player.dart';
-import '/../view/audio_list/widget/list_view.dart';
+import 'widget/app_bar.dart';
+import 'widget/bottom_player.dart';
+import 'widget/list_view.dart';
 import '../../res/app_path.dart';
 import '../../res/constants.dart';
 import '../../view_model/controller/bottom_player_controller.dart';
