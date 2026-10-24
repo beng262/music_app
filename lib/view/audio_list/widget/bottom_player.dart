@@ -100,37 +100,41 @@ class _BottomPlayerState extends State<BottomPlayer>
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Obx(
-                        () => Text(
-                          controller.fileName.value,
-                          style: const TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 15,
-                        width: MediaQuery.sizeOf(context).width - 200,
-                        child: Obx(
-                          () => LinearPercentIndicator(
-                            padding: EdgeInsets.zero,
-                            lineHeight: 4,
-                            percent: controller.progress.value,
-                            progressColor: Colors.blue,
-                            backgroundColor: Colors.white,
-                            barRadius: const Radius.circular(20),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Obx(
+                          () => Text(
+                            controller.fileName.value,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                                color: Colors.black, fontWeight: FontWeight.bold),
                           ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 15,
+                          width: double.infinity,
+                          child: Obx(
+                            () => LinearPercentIndicator(
+                              padding: EdgeInsets.zero,
+                              lineHeight: 4,
+                              percent: controller.progress.value,
+                              progressColor: Colors.blue,
+                              backgroundColor: Colors.white,
+                              barRadius: const Radius.circular(20),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
