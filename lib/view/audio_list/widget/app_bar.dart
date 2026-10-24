@@ -30,7 +30,7 @@ class CustomAppBar extends StatelessWidget {
             },
             child: CircularSoftButton(
               radius: 25,
-              icon: const Icon(Icons.search),
+              icon: const Icon(Icons.folder_outlined),
             ),
           ),
         ],
