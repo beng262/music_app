@@ -18,6 +18,7 @@ class _BottomPlayerState extends State<BottomPlayer>
   late final AnimationController animationController;
   final controller = Get.put(BottomPlayerController());
   final listController = Get.put(FilesController());
+  late final Worker _playbackWorker;
   late AnimationController _animationController;
   late Animation<Offset> _slideInAnimation;
   late Animation<Offset> _slideOutAnimation;
@@ -40,6 +41,12 @@ class _BottomPlayerState extends State<BottomPlayer>
       if (controller.isPlaying.isFalse) {
         listController.playedIndex.value = 999;
         animationController.stop();
+      }
+    });
+
+    _playbackWorker = ever<bool>(controller.isPlaying, (isPlaying) {
+      if (isPlaying) {
+        animationController.repeat();
       }
     });
 
@@ -69,6 +76,7 @@ class _BottomPlayerState extends State<BottomPlayer>
 
   @override
   void dispose() {
+    _playbackWorker.dispose();
     _animationController.reverse().then((value) {});
     _animationController.dispose();
     animationController.dispose();
