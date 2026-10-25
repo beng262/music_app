@@ -36,11 +36,14 @@ class _AnimatedFileListState extends State<AnimatedFileList> {
   final controller = Get.put(FilesController());
   final bottomController = Get.put(BottomPlayerController());
   final GlobalKey<AnimatedListState> _key=GlobalKey();
+  Timer? _initialTimer;
+  final List<Timer> _itemTimers = [];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(const Duration(milliseconds: 100), () {
+    _initialTimer = Timer(const Duration(milliseconds: 100), () {
+      if (!mounted || _key.currentState == null) return;
       for (int i = 0; i < controller.audioFiles.length; i++) {
 
         _insertItemWithDelay(i);
@@ -49,9 +52,22 @@ class _AnimatedFileListState extends State<AnimatedFileList> {
   }
 
   void _insertItemWithDelay(int index) {
-    Timer(Duration(milliseconds: index * 50), () {
-      _key.currentState!.insertItem(index);
-    });
+    _itemTimers.add(Timer(Duration(milliseconds: index * 50), () {
+      if (!mounted) return;
+      final listState = _key.currentState;
+      if (listState == null) return;
+      listState.insertItem(index);
+    }));
+  }
+
+  @override
+  void dispose() {
+    _initialTimer?.cancel();
+    for (final timer in _itemTimers) {
+      timer.cancel();
+    }
+    _itemTimers.clear();
+    super.dispose();
   }
 
   @override
