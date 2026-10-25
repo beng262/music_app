@@ -135,46 +135,49 @@ class _AnimatedFileListState extends State<AnimatedFileList> {
                     const SizedBox(
                       width: 0,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        controller.playedIndex.value = 999;
-                        bottomController.pauseSong();
-                        Get.to(
-                          PlayerPage(
-                              tag: 'TAG$index',
-                              file: AudioFiles(
-                                  size: controller.audioFiles[index].size,
-                                  path: controller.audioFiles[index].path,
-                                  name: controller.audioFiles[index].name)),
-                        );
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            controller.audioFiles[index].name,
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Obx(
-                                () => Text(
-                              controller.audioLength.isNotEmpty && index<controller.audioLength.length
-                                  ? controller.audioLength[index]
-                                  : "",
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.playedIndex.value = 999;
+                          bottomController.pauseSong();
+                          Get.to(
+                            PlayerPage(
+                                tag: 'TAG$index',
+                                file: AudioFiles(
+                                    size: controller.audioFiles[index].size,
+                                    path: controller.audioFiles[index].path,
+                                    name: controller.audioFiles[index].name)),
+                          );
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              controller.audioFiles[index].name,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                  color: Colors.grey,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             ),
-                          )
-                        ],
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Obx(
+                                  () => Text(
+                                controller.audioLength.isNotEmpty && index<controller.audioLength.length
+                                    ? controller.audioLength[index]
+                                    : "",
+                                style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    const Spacer(),
                     GestureDetector(
                         onTap: () {
                           controller.addToAlbum(
