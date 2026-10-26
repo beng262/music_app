@@ -100,9 +100,13 @@ class _FoldersState extends State<Folders> {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        Text(
-                          folderName,
-                          style: const TextStyle(fontWeight: FontWeight.w500),
+                        Expanded(
+                          child: Text(
+                            folderName,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ],
                     ),
