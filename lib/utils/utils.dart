@@ -27,17 +27,20 @@ class Utils {
 
   static getFileLength(String filePath)async{
     final player=AudioPlayer();
-    await player.setFilePath(filePath).then((value){
-      String prefix=player.duration!.inMinutes.toString();
-      String postFix=(player.duration!.inSeconds % 60).toString();
-      if(prefix.length<2){
-        prefix='0$prefix';
-      }
-      if(postFix.length<2){
-        postFix='0$postFix';
-      }
-      controller.audioLength.add('$prefix:$postFix');
-    });
-    player.dispose();
+    try {
+      await player.setFilePath(filePath).then((value){
+        String prefix=player.duration!.inMinutes.toString();
+        String postFix=(player.duration!.inSeconds % 60).toString();
+        if(prefix.length<2){
+          prefix='0$prefix';
+        }
+        if(postFix.length<2){
+          postFix='0$postFix';
+        }
+        controller.audioLength.add('$prefix:$postFix');
+      });
+    } finally {
+      await player.dispose();
+    }
   }
 }
