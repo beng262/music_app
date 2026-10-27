@@ -13,7 +13,8 @@ class BottomPlayerController extends GetxController{
 
   setFilePath(String filePath_){
     player.setFilePath(filePath_).then((value) {
-      totalLength.value='${player.duration!.inMinutes.toString()}:${(player.duration!.inSeconds % 60).toString()}';
+      final duration=player.duration;
+      totalLength.value=duration==null ? '' : '${duration.inMinutes.toString()}:${(duration.inSeconds % 60).toString()}';
       filePath.value=filePath_;
       var temp=path.basename(filePath_);
       temp.substring(0,temp.indexOf('.'));
@@ -45,7 +46,10 @@ class BottomPlayerController extends GetxController{
   setProgress(){
 
       if(player.playerState.playing){
-        progress.value=player.position.inSeconds/player.duration!.inSeconds;
+        final duration=player.duration;
+        progress.value=duration!=null && duration.inMilliseconds>0
+            ? player.position.inMilliseconds/duration.inMilliseconds
+            : 0.0;
         currentLength.value='${player.position.inMinutes.toString()}:${(player.position.inSeconds % 60).toString()}';
         if(currentLength==totalLength){
           player.stop();

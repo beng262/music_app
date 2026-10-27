@@ -47,9 +47,9 @@ class PlayerPageState extends State<PlayerPage>
   @override
   void dispose() {
     // TODO: implement dispose
-    super.dispose();
     controller.dispose();
     animationController.dispose();
+    super.dispose();
   }
 
 

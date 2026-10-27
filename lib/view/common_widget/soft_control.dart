@@ -32,7 +32,7 @@ class CircularSoftButton extends StatelessWidget {
               ],
             ),
           ),
-          Positioned.fill(child: icon!),
+          if (icon != null) Positioned.fill(child: icon!),
         ],
       ),
     );

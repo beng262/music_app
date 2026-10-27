@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import '/../view/common_widget/soft_control.dart';
+import '../common_widget/soft_control.dart';
 import '../../res/constants.dart';
 import '../audio_list/file_list.dart';
 

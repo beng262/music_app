@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '/../view/folders/widget/app_bar.dart';
-import '/../view/folders/widget/folder_list.dart';
+import 'widget/app_bar.dart';
+import 'widget/folder_list.dart';
 import '../../view_model/controller/folder_controller.dart';
 
 
