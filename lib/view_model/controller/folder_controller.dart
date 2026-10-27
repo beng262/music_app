@@ -21,10 +21,11 @@ class FolderController extends GetxController {
 
     for (var file in files) {
       // Filter audio files by extension.
+      final lowerPath = file.path.toLowerCase();
       if (file is File &&
-          (file.path.endsWith('.mp3') ||
-              file.path.endsWith('.m4a') ||
-              file.path.endsWith('.wav'))) {
+          (lowerPath.endsWith('.mp3') ||
+              lowerPath.endsWith('.m4a') ||
+              lowerPath.endsWith('.wav'))) {
         try {
           // Retrieve metadata from the file.
           final metadata = await MetadataRetriever.fromFile(file);
