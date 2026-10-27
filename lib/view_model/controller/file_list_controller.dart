@@ -18,11 +18,12 @@ class FilesController extends GetxController {
         Directory directory = Directory(path);
         List<FileSystemEntity> files = await directory.list().toList();
         var temp = files
-            .where((file) => (file.path.endsWith('.mp3') ||
-                (file.path.endsWith('.wav')) ||
-                (file.path.endsWith('.au')) ||
-            (file.path.endsWith('.aac')) ||
-                (file.path.endsWith('.smi'))))
+            .where((file) => file is File &&
+                (file.path.endsWith('.mp3') ||
+                    (file.path.endsWith('.wav')) ||
+                    (file.path.endsWith('.au')) ||
+                    (file.path.endsWith('.aac')) ||
+                    (file.path.endsWith('.smi'))))
             .toList();
           for (int i = 0; i < temp.length; i++) {
             String name = temp[i].path.split(Platform.pathSeparator).last;
