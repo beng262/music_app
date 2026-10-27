@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget {
               depth: 5,
               shadowLightColor: Colors.white,
               shadowDarkColor: Colors.black38,
-              surfaceIntensity: 10),
+              surfaceIntensity: 0.5),
           textStyle: NeumorphicTextStyle(
               fontSize: 20, height: 0, fontWeight: FontWeight.bold),
         ),
